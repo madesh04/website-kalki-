@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testimonials - Wooden Toys</title>
+    <meta name="description" content="Read what parents and children say about our handcrafted wooden toys. Real reviews from real families.">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- AOS Animation Library -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <style>
+        /* Testimonial Page Specific Styles */
+        .testimonial-hero {
+            background-color: #f8f4e9;
+            padding: 80px 0 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .testimonial-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('images/hero-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.1;
+            z-index: 0;
+        }
+        
+        .testimonial-hero .container {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .testimonial-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--color-primary);
+        }
+        
+        .testimonial-hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Stats and filter buttons removed as requested */
+        
+        .testimonials-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .testimonial-card {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+        
+        .testimonial-header {
+            padding: 20px 20px 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .testimonial-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid var(--color-primary-light);
+            margin-right: 15px;
+        }
+        
+        .testimonial-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .testimonial-name {
+            font-size: 1.1rem;
+            margin: 0 0 5px;
+            color: var(--color-primary);
+        }
+        
+        .testimonial-rating {
+            color: #FFD700;
+        }
+        
+        .testimonial-body {
+            padding: 0 20px 15px;
+            flex-grow: 1;
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            line-height: 1.6;
+            color: var(--text-color);
+            margin: 0;
+        }
+        
+        .testimonial-footer {
+            padding: 15px 20px;
+            border-top: 1px solid rgba(0,0,0,0.05);
+            background-color: #f9f9f9;
+        }
+        
+        .testimonial-product {
+            font-weight: 600;
+            color: var(--color-primary);
+            font-size: 0.9rem;
+        }
+        
+        .share-experience {
+            background-color: #f8f4e9;
+            padding: 80px 0;
+            margin-top: 60px;
+        }
+        
+        .share-experience img {
+            border-radius: 15px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .share-experience img:hover {
+            transform: scale(1.03);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--color-primary);
+            color: white;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: var(--color-primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        @media (max-width: 768px) {
+            .testimonial-hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .testimonial-hero p {
+                font-size: 1rem;
+            }
+            
+            .testimonials-container {
+                grid-template-columns: 1fr;
+                padding: 15px;
+            }
+            
+            .stat-item {
+                min-width: 140px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <!-- Logo -->
+            <a href="index.html" class="logo">
+                <img src="images/kalki_logo1.png" alt="Wooden Toys Logo">
+            </a>
+            
+            <!-- Navigation Menu -->
+            <nav>
+                <button class="mobile-menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="shop.html" class="nav-link">Shop</a></li>
+                    <li class="nav-item"><a href="about.html" class="nav-link">About Us</a></li>
+                    <li class="nav-item"><a href="testimonials.html" class="nav-link active">Testimonials</a></li>
+                    <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
+                    <li class="nav-item"><a href="faq.html" class="nav-link">FAQ</a></li>
+                    <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <!-- Header Icons -->
+            <div class="header-icons">
+                <a href="https://wa.me/919876543210" class="header-icon" target="_blank">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Testimonial Hero Section -->
+    <section class="testimonial-hero">
+        <div class="container">
+            <div class="section-title text-center" data-aos="fade-up">
+                <h1>Loved by Parents & Kids</h1>
+                <p>Read what families have to say about our handcrafted wooden toys</p>
+            </div>
+            
+            <!-- Statistics and filter buttons removed as requested -->
+        </div>
+    </section>
+    
+    <!-- Testimonials Grid -->
+    <section class="testimonials-section">
+        <div class="testimonials-container">
+            <!-- Testimonial 1 -->
+            <div class="testimonial-card" data-aos="fade-up">
+                <div class="testimonial-header">
+                    <div class="testimonial-image">
+                        <img src="images/testimonials/parent1.jpg" alt="Sruthi Shanmugam">
+                    </div>
+                    <div class="testimonial-meta">
+                        <h3 class="testimonial-name">Sruthi Shanmugam</h3>
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-body">
+                    <p class="testimonial-text">"My 3-year-old loves these wooden building blocks! They're beautifully made and I love that they're non-toxic. The different shapes allow for so much creativity. We've had them for 6 months now and they still look brand new despite daily play."</p>
+                </div>
+                <div class="testimonial-footer">
+                    <span class="testimonial-product">Wooden Building Blocks</span>
+                </div>
+            </div>
+            
+            <!-- Testimonial 2 -->
+            <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="testimonial-header">
+                    <div class="testimonial-image">
+                        <img src="images/testimonials/parent2.jpg" alt="Ganesh Sundaram">
+                    </div>
+                    <div class="testimonial-meta">
+                        <h3 class="testimonial-name">Ganesh Sundaram</h3>
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-body">
+                    <p class="testimonial-text">"The wooden puzzle set has been a game-changer for my 5-year-old's concentration skills. The quality is exceptional - worth every rupee! The pieces fit perfectly and the colors are vibrant without being overwhelming. My son plays with it every day."</p>
+                </div>
+                <div class="testimonial-footer">
+                    <span class="testimonial-product">Wooden Puzzle Set</span>
+                </div>
+            </div>
+                
+            <!-- Testimonial 3 -->
+            <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="testimonial-header">
+                    <div class="testimonial-image">
+                        <img src="images/testimonials/parent3.jpg" alt="Meena Kumaran">
+                    </div>
+                    <div class="testimonial-meta">
+                        <h3 class="testimonial-name">Meena Kumaran</h3>
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-body">
+                    <p class="testimonial-text">"I'm so happy to find toys that are eco-friendly and safe for my little one. The wooden train set is beautifully crafted and my 3-year-old twins love it. The only reason for 4 stars instead of 5 is that I wish it came with more track pieces."</p>
+                </div>
+                <div class="testimonial-footer">
+                    <span class="testimonial-product">Wooden Train Set</span>
+                </div>
+            </div>
+                
+            <!-- Testimonial 4 -->
+            <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="testimonial-header">
+                    <div class="testimonial-image">
+                        <img src="images/testimonials/parent4.jpg" alt="Venkatesh Murthi">
+                    </div>
+                    <div class="testimonial-meta">
+                        <h3 class="testimonial-name">Venkatesh Murthi</h3>
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-body">
+                    <p class="testimonial-text">"The wooden stacking rings have been perfect for my 18-month-old daughter. The smooth finish means no splinters, and the natural colors are soothing compared to the bright plastic toys she has. She's developing her fine motor skills while playing!"</p>
+                </div>
+                <div class="testimonial-footer">
+                    <span class="testimonial-product">Wooden Stacking Rings</span>
+                </div>
+            </div>
+                
+            <!-- Testimonial 5 -->
+            <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="testimonial-header">
+                    <div class="testimonial-image">
+                        <img src="images/testimonials/parent5.jpg" alt="Meera Mohan">
+                    </div>
+                    <div class="testimonial-meta">
+                        <h3 class="testimonial-name">Meera Mohan</h3>
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-body">
+                    <p class="testimonial-text">"These architectural building blocks have transformed playtime for my 6-year-old son. He's creating the most amazing structures! The quality is outstanding - each piece is perfectly cut and sanded. Worth every penny for a toy that will last for years."</p>
+                </div>
+                <div class="testimonial-footer">
+                    <span class="testimonial-product">Architectural Building Blocks</span>
+                </div>
+            </div>
+                
+                <!-- Testimonial 6 -->
+                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="testimonial-header">
+                        <div class="testimonial-image">
+                            <img src="images/testimonials/parent6.jpg" alt="Thangavel Murugan">
+                        </div>
+                        <div class="testimonial-meta">
+                            <h3 class="testimonial-name">Thangavel Murugan</h3>
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-body">
+                        <p class="testimonial-text">"The alphabet blocks are helping my 3-year-old learn her letters while having fun. The wood quality is excellent, and I appreciate that the paint is non-toxic. The letters are carved deep enough that they won't wear off with use. Highly recommend!"</p>
+                    </div>
+                    <div class="testimonial-footer">
+                        <span class="testimonial-product">Wooden Alphabet Blocks</span>
+                    </div>
+                </div>
+                
+            <!-- Testimonial 7 -->
+            <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="testimonial-header">
+                    <div class="testimonial-image">
+                        <img src="images/testimonials/parent7.jpg" alt="Meera Joshi">
+                    </div>
+                    <div class="testimonial-meta">
+                        <h3 class="testimonial-name">Meera Joshi</h3>
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-body">
+                    <p class="testimonial-text">"The animal puzzle set has been a hit with my 4-year-old daughter. The pieces are the perfect size for little hands, and the animal designs are adorable. I love that each piece is thick enough to stand up, so she can play with them as figurines too!"</p>
+                </div>
+                <div class="testimonial-footer">
+                    <span class="testimonial-product">Wooden Animal Puzzle</span>
+                </div>
+            </div>
+                
+                <!-- Testimonial 8 -->
+                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="testimonial-header">
+                        <div class="testimonial-image">
+                            <img src="images/testimonials/parent8.jpg" alt="Sanjay Verma">
+                        </div>
+                        <div class="testimonial-meta">
+                            <h3 class="testimonial-name">Sanjay Verma</h3>
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-body">
+                        <p class="testimonial-text">"My son loves his wooden car set! The cars roll smoothly and are just the right size for his small hands. The craftsmanship is excellent. I'm taking off one star only because one of the wheels came loose after a few weeks, but customer service was quick to send a replacement."</p>
+                    </div>
+                    <div class="testimonial-footer">
+                        <span class="testimonial-product">Wooden Car Set</span>
+                    </div>
+                </div>
+                
+            <!-- Testimonial 9 -->
+            <div class="testimonial-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="testimonial-header">
+                    <div class="testimonial-image">
+                        <img src="images/testimonials/parent9.jpg" alt="Kavita Singh">
+                    </div>
+                    <div class="testimonial-meta">
+                        <h3 class="testimonial-name">Kavita Singh</h3>
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-body">
+                    <p class="testimonial-text">"The wooden math blocks have made learning numbers fun for my 6-year-old. The quality is exceptional, and I love that they come in a wooden storage box. These will definitely be passed down to younger siblings. Worth every rupee for educational value alone!"</p>
+                </div>
+                <div class="testimonial-footer">
+                    <span class="testimonial-product">Wooden Math Blocks</span>
+                </div>
+            </div>
+                
+                <!-- Testimonial 10 -->
+                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="testimonial-header">
+                        <div class="testimonial-image">
+                            <img src="images/testimonials/parent10.jpg" alt="Ravi Kumar">
+                        </div>
+                        <div class="testimonial-meta">
+                            <h3 class="testimonial-name">Ravi Kumar</h3>
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-body">
+                        <p class="testimonial-text">"The shape sorter is perfect for my 18-month-old. The shapes are easy to grasp and the wood is smooth and splinter-free. I appreciate that there are no small parts to worry about. It's helping develop her fine motor skills and shape recognition."</p>
+                    </div>
+                    <div class="testimonial-footer">
+                        <span class="testimonial-product">Wooden Shape Sorter</span>
+                    </div>
+                </div>
+                
+            <!-- Testimonial 11 -->
+            <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="testimonial-header">
+                    <div class="testimonial-image">
+                        <img src="images/testimonials/parent11.jpg" alt="Deepa Nair">
+                    </div>
+                    <div class="testimonial-meta">
+                        <h3 class="testimonial-name">Deepa Nair</h3>
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-body">
+                    <p class="testimonial-text">"These soft-edge blocks are perfect for my 1-year-old who's just starting to stack and build. The rounded corners mean I don't have to worry about injuries, and the natural wood finish is beautiful in our home. They're substantial enough that they don't topple easily."</p>
+                </div>
+                <div class="testimonial-footer">
+                    <span class="testimonial-product">Soft-Edge Building Blocks</span>
+                </div>
+            </div>
+                
+                <!-- Testimonial 12 -->
+                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="testimonial-header">
+                        <div class="testimonial-image">
+                            <img src="images/testimonials/parent12.jpg" alt="Amit Sharma">
+                        </div>
+                        <div class="testimonial-meta">
+                            <h3 class="testimonial-name">Amit Sharma</h3>
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-body">
+                        <p class="testimonial-text">"The wooden construction set with working pulleys and gears has been amazing for my 7-year-old son. It's challenging enough to keep him engaged but not so difficult that he gets frustrated. The quality is outstanding and it's teaching him basic engineering concepts."</p>
+                    </div>
+                    <div class="testimonial-footer">
+                        <span class="testimonial-product">Wooden Construction Set</span>
+                    </div>
+                </div>
+            </div>
+    </section>
+    
+  <!-- Share Your Experience -->
+<section class="share-experience">
+  <div class="container">
+    <div class="row align-items-center">
+      
+      <!-- Text Column -->
+      <div class="col-md-6" data-aos="fade-right">
+        <div class="section-title">
+          <h2>Share Your Experience</h2>
+          <p>We'd love to hear about your child's experience with our wooden toys!</p>
+        </div>
+        <p>
+          Your feedback helps us improve our products and inspires other parents looking for quality toys for their children.
+        </p>
+        <div class="mt-4">
+          <a href="contact.html" class="btn">Submit Your Review</a>
+        </div>
+      </div>
+      
+      <!-- Image Column -->
+      <div class="col-md-6" data-aos="fade-left">
+        <img src="images/testimonials/child-playing.jpg" alt="Child playing with wooden toys" class="img-fluid rounded shadow" style="max-width: 100%; height: auto;">
+      </div>
+
+    </div>
+  </div>
+</section>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <!-- Company Info -->
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h3 class="footer-heading">Wooden Toys</h3>
+                    <p>Handcrafted wooden toys that inspire creativity, learning, and endless play possibilities for children of all ages.</p>
+                    <div class="social-links mt-3">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div class="col-md-2 mb-4 mb-md-0">
+                    <h3 class="footer-heading">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="shop.html">Shop</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Customer Service -->
+                <div class="col-md-3 mb-4 mb-md-0">
+                    <h3 class="footer-heading">Customer Service</h3>
+                    <ul class="footer-links">
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="shipping.html">Shipping & Returns</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact Info -->
+                <div class="col-md-3">
+                    <h3 class="footer-heading">Contact Us</h3>
+                    <ul class="footer-contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Toy Street, Chennai, Tamil Nadu, India</li>
+                        <li><i class="fas fa-phone"></i> +91 98765 43210</li>
+                        <li><i class="fas fa-envelope"></i> info@woodentoys.com</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Copyright -->
+            <div class="footer-bottom mt-4 pt-3">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="copyright">© 2023 Wooden Toys. All Rights Reserved.</p>
+                    </div>
+                    <div class="col-md-6 text-md-end">
+                        <p class="payment-methods">
+                            <i class="fab fa-cc-visa"></i>
+                            <i class="fab fa-cc-mastercard"></i>
+                            <i class="fab fa-cc-paypal"></i>
+                            <i class="fab fa-cc-amex"></i>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <a href="#" class="back-to-top"><i class="fas fa-arrow-up"></i></a>
+
+    <!-- AOS Animation Library JS -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+         document.addEventListener('DOMContentLoaded', function() {
+             // Initialize AOS animations
+             AOS.init({
+                 duration: 800,
+                 easing: 'ease',
+                 once: true
+             });
+             
+             // Filter functionality removed as requested
+         });
+     </script>
+
+    <!-- JavaScript -->
+ <script src="js/scripts.js"></script>
+</body>
+</html>
